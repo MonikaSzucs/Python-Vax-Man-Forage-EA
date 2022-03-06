@@ -1,7 +1,9 @@
 #Pacman in Python with PyGame
 #https://github.com/hbokmann/Pacman
   
-import pygame._view
+#import pygame._view
+import pygame
+import win32api
   
 black = (0,0,0)
 white = (255,255,255)
@@ -154,7 +156,7 @@ class Player(pygame.sprite.Sprite):
     # Find a new position for the player
     def update(self,walls,gate):
         # Get the old position, in case we need to go back to it
-        
+
         old_x=self.rect.left
         new_x=old_x+self.change_x
         prev_x=old_x+self.prev_x
@@ -181,9 +183,11 @@ class Player(pygame.sprite.Sprite):
 
             # Did this update cause us to hit a wall?
             y_collide = pygame.sprite.spritecollide(self, walls, False)
+            
             if y_collide:
                 # Whoops, hit a wall. Go back to the old position
                 self.rect.top=old_y
+
                 # self.rect.left=prev_x
                 # x_collide = pygame.sprite.spritecollide(self, walls, False)
                 # if x_collide:
@@ -194,8 +198,10 @@ class Player(pygame.sprite.Sprite):
         if gate != False:
           gate_hit = pygame.sprite.spritecollide(self, gate, False)
           if gate_hit:
+            
             self.rect.left=old_x
             self.rect.top=old_y
+            
 
 #Inheritime Player klassist
 class Ghost(Player):
@@ -548,13 +554,14 @@ def doNext(message,left,all_sprites_list,block_list,monsta_list,pacman_collide,w
           if event.key == pygame.K_ESCAPE:
             pygame.quit()
           if event.key == pygame.K_RETURN:
-            del all_sprites_list
-            del block_list
-            del monsta_list
-            del pacman_collide
-            del wall_list
-            del gate
-            startGame()
+            win32api.MessageBox(0, 'hello', 'title')
+            #del all_sprites_list
+            #del block_list
+            #del monsta_list
+            #del pacman_collide
+            #del wall_list
+            #del gate
+            #startGame()
 
       #Grey background
       w = pygame.Surface((400,200))  # the size of your rect
@@ -564,6 +571,7 @@ def doNext(message,left,all_sprites_list,block_list,monsta_list,pacman_collide,w
 
       #Won or lost
       text1=font.render(message, True, white)
+      
       screen.blit(text1, [left, 233])
 
       text2=font.render("To play again, press ENTER.", True, white)
@@ -571,7 +579,7 @@ def doNext(message,left,all_sprites_list,block_list,monsta_list,pacman_collide,w
       text3=font.render("To quit, press ESCAPE.", True, white)
       screen.blit(text3, [165, 333])
 
-      pygame.display.flip()
+      #pygame.display.flip()
 
       clock.tick(10)
 
