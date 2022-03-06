@@ -457,6 +457,7 @@ def startGame():
 
   while done == False:
       # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
+      # event.get reads the events happening on the popup screen.
       for event in pygame.event.get():
           if event.type == pygame.QUIT:
               done=True
@@ -535,8 +536,8 @@ def startGame():
 
       monsta_hit_list = pygame.sprite.spritecollide(Pacman, monsta_list, False)
 
-      if monsta_hit_list:
-        doNext("Game Over",235,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
+      #if monsta_hit_list:
+      #  doNext("Game Over",235,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
 
       # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
       
